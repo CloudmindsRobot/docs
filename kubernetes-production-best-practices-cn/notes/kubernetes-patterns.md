@@ -43,9 +43,9 @@ PriorityClass和QoS无关：**QoS由kubelet**用于终止，**PriorityClass由sc
 
 - 使用RBAC锁定对PriorityClass的访问，限制每个命名空间的ResourceQuota中的PriorityClass
 
-## 第3章：声明性部署
+## 第三章：声明性部署
 
-## 第4章 健康调查
+## 第四章 健康调查
 
 一种让平台（Kubernetes）了解容器化应用程序的内部状态（否则就是平台的黑匣子）并采取适当行动的方法。
 
@@ -62,7 +62,7 @@ Kubernetes（kubelet）执行三种定期健康检查：
 - 为所有容器定义活动性和就绪性探测
 - 为所有活跃度和就绪性探测设置initalDelaySeconds（进行测试以确定该值应该有多大）
 
-## 第5章：管理生命周期
+## 第五章：管理生命周期
 
 平台向应用程序发出有关应用程序生命周期（由平台管理）的信号。
 
@@ -83,4 +83,4 @@ Kubernetes（kubelet）执行三种定期健康检查：
 - 如果要为容器执行任何启动任务，则实现postStart钩子
 - 只对postStart钩子使用_exec_方法，因为不能保证在调用postStart钩子时容器进程已经在运行（因此，_httpGet_ and _tcpSocket_ 有可能不能以竞态条件方式执行）
 
-## 第6章：自动布局
+## 第六章：自动布局

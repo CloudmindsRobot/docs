@@ -51,25 +51,6 @@ _创建一个开发集群（开发人员可以在这里部署和测试他们正�
 - 为每个命名空间分配以下注释：TTL、assignee、resource quota、team、purpose
   - 您可以定义一个CRD，它用所有这些元数据创建一个命名空间
 
-## Chapter 3. Monitoring and Logging in Kubernetes
-
-### Monitoring
-
-- Run monitoring system in a dedicated "utility cluster" (to avoid problems with the target cluster affecting the monitoring system)
-
-### Logging
-
-_Collect and centrally store logs from all the workloads running in the cluster and from the cluster components themselves._
-
-- Implement a retention and archival strategy for logs (retain 30-45 days of historical logs)
-- What to collect logs from:
-  - Nodes (kubelet, container runtime)
-  - Control plane (API server, scheduler, controller mananger)
-  - Kubernetes auditing (all requests to the API server)
-- Applications should log to stdout rather than to files
-  - Allows a daemon on each node to collect the logs from the container runtime (if logging to files, a sidecar container for each pod might be necessary)
-- Some log aggregation tools: EFK stack (Elasticsearch, Fluentd, Kibana), DataDog, Sumo Logic, Sysdig, GCP Stackdriver, Azure Monitor, AWS CloudWatch
-- Use a hosted logging solution (e.g. DataDog, Stackdriver) rather than a self-hosted one (e.g. EFK stack)
 ## 第三章。Kubernetes的监测和日志
 
 ### 监控
@@ -116,7 +97,7 @@ _收集并集中存储集群中运行的所有工作负载和集群组件本身�
 
 - 为Kubernetes API的所有“用户”使用特定的服务帐户，这些用户被分配了具有最少特权的定制角色
 
-##第五章。持续集成、测试和部署
+## 第五章。持续集成、测试和部署
 
 _CI/CD管道的常见步骤是：（1）将代码推送到Git存储库；（2）构建整个应用程序代码；（3）针对构建的代码运行测试；（4）构建容器镜像；（5）将容器镜像推送到容器仓库；（6）将应用程序部署到Kubernetes（使用多种部署策略之一，例如滚动更新，蓝/绿部署、金丝雀部署或A/B部署），（7）针对已部署的应用程序运行测试（例如混沌实验）_
 
@@ -129,17 +110,7 @@ _CI/CD管道的常见步骤是：（1）将代码推送到Git存储库；（2）
 - 在CI中包含大量测试（如果任何测试失败，则构建应失败）
 - 在生产环境中建立广泛的监控
 
-## Chapter 6. Versioning, Releases, and Rollouts
-
-_The true declarative nature of Kubernetes really shines when planning the proper use of labels._
-
-_By properly identifying the operational and development states by the means of labels in the resource manifests, it becomes possible to tie in tooling and automation to more easily manage the complex processes of upgrades, rollouts, and rollbacks._
-
-- _Version: increments when the code specification changes_
-- _Release: increments when the applicatoin is (re)-deployed (even if it's the same version of the app)_
-- _Rollout: how a replicated app is put into production (this is taken care of automatically by the Deployment resource when there are changes to the `deployment.spec.template` field)_
-- _Rollback: revert an application to the state of a previous release_
-## 第6章 版本控制、发布和部署
+## 第六章 版本控制、发布和部署
 
 _Kubernetes真正的声明性本质在计划标签的正确使用时非常闪耀_
 
@@ -169,11 +140,6 @@ _与官方[推荐标签]进行比较(https://kubernetes.io/docs/concepts/overvie
 - `app.kubernetes.io/part-of`
 - `app.kubernetes.io/managed-by`
 
-## Chapter 7. Worldwide Application Distribution and Staging
-
-_Deploying app in multiple regions around the world (for scaling, reduced latency, etc.)._
-
-_Distributing container images, load balancing, canary regions, testing..._
 ## 第七章 全局应用程序分发和部署
 
 _在全球多个地区部署应用程序（用于扩展、减少延迟等）_
@@ -260,7 +226,7 @@ _允许根据这个Pod所需的容器之间的隔离量来指定将哪个容器�
 - 使用DenyExecOnPrivileged或DenyEscalatingExec许可控制器作为PodSecurityPolicies的一个更简单的替代方法->**但是，这不是一个最佳实践，因为这些都是不推荐的，建议使用PodSecurityPolicies**
 - 使用Falco在容器运行时中强制执行安全策略
 
-## 第11章 集群的策略和治理
+## 第十一章 集群的策略和治理
 
 说明：
 
@@ -279,25 +245,25 @@ _允许根据这个Pod所需的容器之间的隔离量来指定将哪个容器�
 -入口主机名不能重叠
 -入口只能使用HTTPs
 
-## 第12章 管理多个群集
+## 第十二章 管理多个群集
 
 _如何管理多个集群，使不同集群中的应用程序相互交互，一次将应用程序部署到多个集群，Kubernetes Federation_
 
-## 第13章 整合外部服务和Kubernetes
+## 第十三章 整合外部服务和Kubernetes
 
 - Kubernetes中使用集群外服务的应用程序_
 - 在Kubernetes中使用服务的集群外的应用程序_
 - Kubernetes中使用另一个Kubernetes集群服务的应用程序_
 
-## 第14章 Kubernetes的运行机器学习
+## 第十四章 Kubernetes的运行机器学习
 
 _显然，Kubernetes是“支持机器学习工作流和生命周期的完美环境”_
 
-## 第15章 高层建筑中bernkuets模式的应用
+## 第十五章 高层建筑中bernkuets模式的应用
 
 _开发更高层次的抽象，以便在topof Kubernetes上提供更适合开发人员的原语_
 
-## 第16章 管理状态和有状态的应用程序
+## 第十六章 管理状态和有状态的应用程序
 
 ### 基本卷
 

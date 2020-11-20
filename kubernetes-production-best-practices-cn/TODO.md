@@ -218,32 +218,6 @@ TODO：集成当前的“日志”（应用程序开发）和“日志设置”�
 
 * * *
 
-## Monitoring
-
-### Set up extensive monitoring in your cluster
-
-TODO: what kind of advice to give in this item?
-
-Monitoring is the collection and aggregation of measurements from different components of your cluster. It is extremely important for gaining insight into the internals of your cluster, assessing its health, and detecting and troubleshooting problems, and even preventing them before they occur.
-
-Monitoring consists of two parts:
-
-1. Components make measurements and expose them as metrics
-2. The monitoring system periodically collects these metrics
-
-Some monitoring systems include:
-
-- Self-hosted: Prometheus
-- Managed: DataDog, Sumo Logic, Sysdig, Google Stackdriver, Azure Monitor, Azure Monitor for Containers, AWS CloudWatch, AWS Container Insights
-
-_What should you monitor?_
-
-Exactly what metrics to collect depends on the components in your cluster (i.e. what metrics they expose). 
-
-There are some general guidelines as to the _types_ of metrics to collect:
-
-- Infrastructure (e.g. nodes): USE metrics — Usage, Saturation, Errors
-- Applications: RED  metrics — Rate, Errors, Duration
 ## 监控
 
 ### 在集群中设置广泛的监视
@@ -260,7 +234,7 @@ TODO：在这件事上有什么建议？
 
 一些监控系统包括：
 
-- 自我托管：Prometheus
+- 自托管：Prometheus
 - 托管：DataDog、Sumo Logic、Sysdig、Google Stackdriver、Azure Monitor、Azure Monitor for Containers、AWS CloudWatch、AWS Container Insights
 
 _你应该监控什么？_
@@ -296,9 +270,9 @@ _你应该监控什么？_
 
 * * *
 
-## 配置和机密
+## 配置和机密（Secret）
 
-TODO:集成当前的“配置和机密”
+TODO:集成当前的“配置和机密（Secret）”
 
 ### 将所有配置与应用程序代码分开
 
@@ -308,15 +282,15 @@ TODO:集成当前的“配置和机密”
 
 在Kubernetes中，配置可以保存在ConfigMaps中，当卷作为环境变量传入时，可以将其装入容器中。
 
-仅在ConfigMaps中保存非敏感配置。对于敏感信息（如凭据），请使用机密资源。
+仅在ConfigMaps中保存非敏感配置。对于敏感信息（如凭据），请使用机密（Secret）资源。
 
 ### 在ConfigMaps中保存非关键配置，在Secrets中保存关键配置
 
 机密类似于ConfigMaps，但是有一些特殊的语义来保护它们的内容（例如，机密的内容不会显示在某些kubectl输出中）
 
-### 将机密装载为卷，而不是环境变量
+### 将机密（Secret）装载为卷，而不是环境变量
 
-秘密资源的内容应该作为卷装入容器中，而不是作为环境变量传入。
+秘密（Secret）资源的内容应该作为卷装入容器中，而不是作为环境变量传入。
 
 这是为了防止机密值出现在用于启动容器的命令中，而该容器可能由不应访问机密值的个人检查。
 
@@ -341,17 +315,6 @@ TODO:集成当前的“配置和机密”
 
 * * *
 
-## Role-based access control (RBAC)
-
-TODO: integrate with current "Role-Based Access Control (RBAC) policies" (governance)
-
-### Follow the "least privilege" principle for RBAC roles
-
-### Don't use "catch all" service accounts for Pods
-
-If a Pod needs to access the Kubernetes API, tailor an RBAC role that allows exactly those operatios that the Pod has to do (and nothing more), assign it to a new service account, and assign this service account to the Pod.
-
-Don't use an exising service account for the Pod that might have an associated role with more permissions than the Pod needs.
 ## 基于角色的访问控制（RBAC）
 
 TODO:集成当前的“基于角色的访问控制（RBAC）策略”（治理）
